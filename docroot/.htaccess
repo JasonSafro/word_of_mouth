@@ -1,0 +1,21 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*) index.php?/$1 [L,QSA]
+
+# Redirect non-www urls to www
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^wordofmouthreferral\.com [NC]
+RewriteRule (.*) http://www.wordofmouthreferral.com/$1 [R=301,L]
+
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#RewriteCond %{HTTP_HOST} !^www\.
+#RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+
+#For video
+AddType video/ogg .ogv .ogg
+AddType video/webm .webm
+AddType video/mp4 .mp4

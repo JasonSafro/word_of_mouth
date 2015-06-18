@@ -1,0 +1,172 @@
+<script src="<?php echo base_url() ?>assets/scripts/jquery.wslide.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+        /*====================== Exemple basique ======================*/
+        $("#parent1").wslide({
+            width: 450,
+            height: 200,
+            duration: 2000,
+            effect: 'easeOutBounce'
+        });
+        /*====================== Exemple 2 ======================*/
+        $("#parent2").wslide({
+            width: '100%',
+            height: 284,
+            //pos: 1,
+            //horiz: true,
+            autoplay: true ,
+            fade: true,
+            //delay: 2000,
+            duration: 2000, 
+            //type: 'sequence',
+            //duration: 1000,
+            //effect: 'easeOutElastic'
+					
+        });
+				
+				
+				
+        /*====================== Exemple 3 ======================*/
+        $("#parent3").wslide({
+            width: 250,
+            height: 300,
+            col: 4,
+            autolink: 'menu3',
+            duration: 4000,
+            effect: 'easeOutExpo'
+        });
+    });
+</script>
+<style>
+    .red {
+    color: #FF0000;
+    font-size: 10px;
+    font-style: italic;
+    font-weight: bold;
+}
+</style>
+<div id="page-wrap">
+    <div id="section">
+        <div class="b-strip">
+            <section id="main">
+                <h1>Dashboard</h1>
+                <div class="links">
+                    <a href="<?php echo base_url() ?>">Home</a> | <a href="<?php echo base_url() ?>dashboard/Manage_business_info">Dashboard</a> | Business
+                </div>
+            </section></div>
+
+
+        <div class="dash"><section id="main">
+                <?php $this->load->view('dashboard/dashbord_left_sidebar_view'); ?>
+                <div class="dash-r">                   
+                    <div class="dash-form">
+                        <?php
+                    $attr = array('name' => 'frmBusInfoEdit', 'id' => 'frmBusInfoEdit', 'autocomplete' => 'off', 'method' => 'post');
+                    echo form_open('dashboard/manage_business_info', $attr);
+                    ?>
+                        <div class="dash-area">	
+                            <div class="dash-inner">
+                                <label>Name *</label>
+                                <input type="text" class="inp" name="buss_name" id="buss_name" value="<?php echo set_value('buss_name', $buss_name); ?>"/>
+                                  <?php echo form_error('buss_name'); ?>
+                            </div>
+                            <div class="dash-inner">
+                                <label>Contact Name</label>
+                                <input type="text" class="inp" name="buss_cont_name" id="buss_cont_name" value="<?php echo set_value('buss_cont_name', $buss_cont_name); ?>"/>
+                                <?php echo form_error('buss_cont_name'); ?>
+                            </div>
+                            <div class="dash-inner">
+                                <label>Address*</label>
+                                <input type="text" class="inp" name="buss_address" id="buss_address" value="<?php echo set_value('buss_address', $buss_address); ?>"/>
+                                <?php echo form_error('buss_address'); ?>
+                            </div>
+                            <div class="dash-inner">
+                                <label>Address Add On</label>
+                                <input type="text" class="inp" name="buss_addr_addon" id="buss_addr_addon" value="<?php echo set_value('buss_addr_addon', $buss_addr_addon); ?>"/>
+                             <?php echo form_error('buss_addr_addon'); ?>
+                            </div>
+                              <div class="dash-inner">
+                                <label>City *</label>
+                                <input type="text" class="inp" name="buss_city" id="buss_city" value="<?php echo set_value('buss_city', $buss_city); ?>"/>
+                                <?php echo form_error('buss_city'); ?>
+                            </div>
+                            <div class="dash-inner">
+                                <label>Zip Code*</label>
+                                <input type="text" class="inp" name="buss_zip_code" id="buss_zip_code" value="<?php echo set_value('buss_zip_code', $buss_zip_code); ?>"/>
+                                <?php echo form_error('buss_zip_code'); ?>
+                            </div> 
+                             <div class="dash-inner">
+                                <label>Phone *</label>
+                                <input type="text" class="inp" name="buss_phone" id="buss_phone" value="<?php echo set_value('buss_phone', $buss_phone); ?>"/>
+                                <?php echo form_error('buss_phone'); ?>
+                            </div>                          
+                             <div class="dash-inner">
+                                  <label>FAX</label>
+                                  <input type="text" class="inp" name="buss_fax" id="buss_fax" value="<?php echo set_value('buss_fax', $buss_fax); ?>"/>
+                                  <?php echo form_error('buss_fax'); ?>
+                             </div>                           
+                            <div class="dash-inner">
+                                <label>Web Address</label>
+                                <input type="text" class="inp" name="buss_web_address" id="buss_web_address" value="<?php echo set_value('buss_web_address', $buss_web_address); ?>"/>
+                                <?php echo form_error('buss_web_address'); ?>
+                            </div>
+                              <div class="dash-inner">
+                                <label>Email</label>
+                                <input type="text" class="inp" name="buss_email" id="buss_email" value="<?php echo set_value('buss_email', $buss_email); ?>"/>
+                                <?php echo form_error('buss_email'); ?>
+                            </div>
+                             <div class="dash-inner">
+                                <label>Business License Number</label>
+                                <input type="text" class="inp" name="buss_license_num" id="buss_license_num" value="<?php echo set_value('buss_license_num', $buss_license_num); ?>"/>
+                                <?php echo form_error('buss_license_num'); ?>
+                            </div>
+                            <div class="dash-inner">
+                                <label>Business Tag Line</label>
+                                <input type="text" class="inp" name="buss_tag_line" id="buss_tag_line" value="<?php echo set_value('buss_tag_line', $buss_tag_line); ?>"/>
+                                <?php echo form_error('buss_tag_line'); ?>
+                            </div>
+                            <!--<div class="dash-inner">
+                                <label>Business Description</label>
+                                <input type="text" class="inp" name="buss_description" id="buss_description" value="<?php echo set_value('buss_description', $buss_description); ?>"/>
+                                <?php echo form_error('buss_tag_line'); ?>
+                            </div>-->
+                            <div class="dash-inner">
+                                <label>Business Description</label>
+                                <textarea name="buss_description" id="buss_description" class="txtarea" rows="5"><?php echo set_value('buss_description', $buss_description); ?></textarea>
+                                <?php echo form_error('buss_description'); ?>
+                            </div>
+                            
+                             <div class="dash-inner">
+                                <label>Social Media Channels</label>
+                                <img src="<?php echo USER_SIDE_IMAGES;?>h1.png"><input type="text" class="inp" name="buss_social_media_channel_1" id="buss_social_media_channel_1" value="<?php echo set_value('buss_social_media_channel_1', $buss_social_media_channel_1); ?>"/>
+                               <br/> <img src="<?php echo USER_SIDE_IMAGES;?>h2.png"> <input type="text" class="inp" name="buss_social_media_channel_2" id="buss_social_media_channel_2" value="<?php echo set_value('buss_social_media_channel_2', $buss_social_media_channel_2); ?>"/>
+                                 <br/><img src="<?php echo USER_SIDE_IMAGES;?>h3.png"><input type="text" class="inp" name="buss_social_media_channel_3" id="buss_social_media_channel_3" value="<?php echo set_value('buss_social_media_channel_3', $buss_social_media_channel_3); ?>"/>
+                                 <br/><img src="<?php echo USER_SIDE_IMAGES;?>h4.png"><input type="text" class="inp" name="buss_social_media_channel_4" id="buss_social_media_channel_4" value="<?php echo set_value('buss_social_media_channel_4', $buss_social_media_channel_4); ?>"/>
+                                <?php echo form_error('buss_email'); ?>
+                            </div>
+                             
+                                                        
+                            <div class="dash-inner">
+                                <!--<input type="button" class="dash-button" value="CLEAR FORM">-->
+                                <input type="submit" class="dashorange" value="submit">
+                            </div>
+                             <div class="dash-inner"> 
+                           <?php echo anchor('dashboard/business_overview', 'Back','class="dashorange" title="Back"');?>
+                                 </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
+
+            </section></div>
+
+
+
+
+
+
+    </div>
+</div>

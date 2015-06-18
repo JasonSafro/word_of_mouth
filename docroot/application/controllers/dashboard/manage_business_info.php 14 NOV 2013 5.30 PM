@@ -1,0 +1,95 @@
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Manage_business_info extends CI_Controller {
+
+    function __construct()
+    {
+        parent::__construct();
+         _authenticateUserLogin();
+        $this->load->model('website_general_model', 'WGModel');
+        $this->load->model('mdgeneraldml');
+        $this->form_validation->set_error_delimiters('<span class="red">', '</span>');
+    }
+
+    function index()
+    {       
+        $tbl_user = 'tbl_business_info';
+        $where_user = array('user_id' => $this->session->userdata('user_id'));
+        $bus_Info = $this->mdgeneraldml->select('*', $tbl_user, $where_user);
+        $info = $bus_Info[0];
+
+        $data = array(
+            'buss_name' => $info['buss_name'],
+            'buss_cont_name' => $info['buss_cont_name'],
+            'buss_address' => $info['buss_address'],
+            'buss_addr_addon' => $info['buss_addr_addon'],
+            'buss_city' => $info['buss_city'],
+            'buss_zip_code' => $info['buss_zip_code'],
+            'buss_phone' => $info['buss_phone'],
+            'buss_fax' => $info['buss_fax'],
+            'buss_web_address' => $info['buss_web_address'],
+            'buss_email' => $info['buss_email'],
+            'buss_license_num' => $info['buss_license_num'],
+            'buss_social_media_channel_1' => $info['buss_social_media_channel_1'],
+            'buss_social_media_channel_2' => $info['buss_social_media_channel_2'],
+            'buss_social_media_channel_3' => $info['buss_social_media_channel_3'],
+            'buss_social_media_channel_4' => $info['buss_social_media_channel_4'],
+            'buss_tag_line'=>$info['buss_tag_line'],
+            'buss_description'=>$info['buss_description']
+        );
+
+        $this->form_validation->set_rules('buss_name', 'Name', 'xss_clean|trim|required');
+        $this->form_validation->set_rules('buss_cont_name', 'Contact Name', 'xss_clean|trim|required');
+        $this->form_validation->set_rules('buss_address', 'Address', 'xss_clean|trim|required');
+        $this->form_validation->set_rules('buss_addr_addon', 'Address Add On', 'xss_clean|trim');
+        $this->form_validation->set_rules('buss_city', 'City', 'xss_clean|trim|required|max_lenght[30]');
+        $this->form_validation->set_rules('buss_phone', 'Phone', 'xss_clean|trim|required|is_numeric');
+        $this->form_validation->set_rules('buss_fax', 'FAX', 'xss_clean|trim|is_numeric');
+        $this->form_validation->set_rules('buss_web_address', 'Web Address', 'xss_clean|trim');
+        $this->form_validation->set_rules('buss_email', 'Email', 'xss_clean|trim|valid_email');
+        $this->form_validation->set_rules('buss_license_num', 'License Number', 'xss_clean|trim|is_numeric');
+        $this->form_validation->set_rules('buss_social_media_channel_1', 'Phone no', 'xss_clean|trim');
+        $this->form_validation->set_rules('buss_social_media_channel_2', 'Phone no', 'xss_clean|trim');
+        $this->form_validation->set_rules('buss_social_media_channel_3', 'Phone no', 'xss_clean|trim');
+        $this->form_validation->set_rules('buss_social_media_channel_4', 'Phone no', 'xss_clean|trim');
+        $this->form_validation->set_rules('buss_tag_line', 'Business Tag Line', 'xss_clean|trim|required');
+        $this->form_validation->set_rules('buss_description', 'Business Description', 'xss_clean|trim|required|max_length[255]');
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->load->view('includes/header');
+            $this->load->view('dashboard/business_edit_view', $data);
+            $this->load->view('includes/footer');
+        }
+        else
+        {
+            $updateData = array(
+                'buss_name' => $this->input->post('buss_name'),
+                'buss_cont_name' => $this->input->post('buss_cont_name'),
+                'buss_address' => $this->input->post('buss_address'),
+                'buss_addr_addon' => $this->input->post('buss_addr_addon'),
+                'buss_city' => $this->input->post('buss_city'),
+                'buss_phone' => $this->input->post('buss_phone'),
+                'buss_fax' => $this->input->post('buss_fax'),
+                'buss_web_address' => $this->input->post('buss_web_address'),
+                'buss_email' => $this->input->post('buss_email'),
+                'buss_license_num' => $this->input->post('buss_license_num'),
+                'buss_social_media_channel_1' => $this->input->post('buss_social_media_channel_1'),
+                'buss_social_media_channel_2' => $this->input->post('buss_social_media_channel_2'),
+                'buss_social_media_channel_3' => $this->input->post('buss_social_media_channel_3'),
+                'buss_social_media_channel_4' => $this->input->post('buss_social_media_channel_4'),
+                'buss_tag_line' => $this->input->post('buss_tag_line'),
+                'buss_description' => $this->input->post('buss_description')
+            );
+
+            $tableName = 'tbl_business_info';
+            $where = array('user_id' => $this->session->userdata('user_id'));
+            $result = $this->mdgeneraldml->update($where, $tableName, $updateData);
+            $url = base_url() . 'dashboard/business_overview';
+            echo "<script>alert('Information Updated Successfully!');window.location.href='$url'</script>";
+        }
+    }
+
+}

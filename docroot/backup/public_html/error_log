@@ -1,0 +1,1 @@
+[25-Mar-2014 11:57:01 UTC] PHP Fatal error:  Using $this when not in object context in /home/refwom29412/public_html/application/helpers/common_functions_helper.php on line 261
