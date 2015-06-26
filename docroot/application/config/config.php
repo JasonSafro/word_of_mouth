@@ -7,6 +7,10 @@
       require_once( dirname(__FILE__).'/config.jsafro.php' );
     break;
 
+    case 'cooper.wom.local':
+      require_once( dirname(__FILE__).'/config.jcooper.php' );
+      break;
+
     default:
       require_once( dirname(__FILE__).'/config.default.php' );
     break;
