@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://dev.wom.local/';
+$config['base_url']	= 'https://dev.wom.local/';
 
 
 
